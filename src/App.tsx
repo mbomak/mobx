@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import {observable, computed, configure} from 'mobx';
+import {observer} from 'mobx-react';
 import './App.css';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+configure({enforceActions: 'observed'});
+
+@observer
+class App extends Component {
+    @observable count = 0;
+    hI = () => this.count++;
+    hD = () => this.count--;
+    render() {
+        return (
+            <div className="app">
+                {this.count}
+                <br />
+                <button onClick={this.hI}>-------</button>
+                <br />
+                <button onClick={this.hD}>+++++</button>
+            </div>
+        );
+    }
 }
 
 export default App;
