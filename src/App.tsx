@@ -1,23 +1,34 @@
 import React, {Component} from 'react';
-import {observable, computed, configure} from 'mobx';
-import {observer} from 'mobx-react';
+import {observer, inject} from 'mobx-react';
+import {withRouter} from "react-router-dom";
+
+import {IUser} from 'modules/user/store';
 import './App.css';
 
-configure({enforceActions: 'observed'});
+interface IProps {
+    
+}
 
+@inject((stores: any) => ({
+    user: stores.user as IUser
+}))
+@(withRouter as any)
 @observer
-class App extends Component {
-    @observable count = 0;
-    hI = () => this.count++;
-    hD = () => this.count--;
+class App extends Component<{user?: IUser}, {}> {
+    change = (): void => {
+        this.props.user && this.props.user.chT('dasda');
+    };
+
     render() {
+        console.log('this.props',this.props);
+        const {user} = this.props;
+
         return (
             <div className="app">
-                {this.count}
-                <br />
-                <button onClick={this.hI}>-------</button>
-                <br />
-                <button onClick={this.hD}>+++++</button>
+                {user && user.title}
+                <br/>
+                <br/>
+                <button onClick={this.change}>button</button>
             </div>
         );
     }
