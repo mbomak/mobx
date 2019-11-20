@@ -1,11 +1,11 @@
-import {observable} from "mobx";
+import {observable} from 'mobx';
 
-export interface Interface {
-    token: string
+export interface IAccess {
+    token: string;
 }
 
-class Access implements Interface {
+class Access implements IAccess {
     @observable token = 'token';
 }
 
-export default new Access();
+export default Access;

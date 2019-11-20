@@ -1,16 +1,33 @@
-import {observable, action} from "mobx";
+import {observable, action, runInAction} from "mobx";
+import transportInstance from 'helpers/transportInstance';
+import serviceXHR from './serviceXHR';
 
-export interface IUser {
+const getUser = new serviceXHR(transportInstance);
+
+interface User {
+    completed: boolean;
+    id: number;
     title: string;
-    chT(newTitle: string): void
+    userId: number;
 }
 
-class User implements IUser{
-    @observable title= 'implements';
+export interface IUser {
+    userId: number;
+    data: User | null;
+    getData(): void;
+}
 
-    @action chT(newTitle: string) {
-        this.title = newTitle;
+class User implements IUser {
+    @observable userId = 1;
+    @observable data = null;
+
+    async getData() {
+        const {data} = await getUser.invoke(this.userId);
+        runInAction(() => {
+           this.data = data;
+           this.userId ++;
+        });
     }
 }
 
-export default new User();
+export default User;
