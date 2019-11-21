@@ -30,19 +30,19 @@ class User extends Component<{
         return (
             <>
                 {title}
-                <Button type="button" onClick={this.getUser}>
-                    Get user
-                </Button>
+                <Button handleClick={this.getUser}>Get user</Button>
                 {data && (
-                    <UserItem>
-                        <p>title: {data.title}</p>
-                        <p>id: {data.id}</p>
-                        <p>user id: {data.userId}</p>
-                        <p>
-                            status:{' '}
-                            {data.completed ? 'completed' : 'not completed'}
-                        </p>
-                    </UserItem>
+                    <div className="user">
+                        <UserItem>
+                            <p>title: {data.title}</p>
+                            <p>id: {data.id}</p>
+                            <p>user id: {data.userId}</p>
+                            <p>
+                                status:{' '}
+                                {data.completed ? 'completed' : 'not completed'}
+                            </p>
+                        </UserItem>
+                    </div>
                 )}
             </>
         );

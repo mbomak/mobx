@@ -2,8 +2,7 @@ import {toJS} from 'mobx';
 import Store from './store';
 import transformToTypes from 'helpers/transformToTypes';
 
-
-describe('Should be valid user data',  () => {
+describe('Should be valid user data', () => {
     const store = new Store();
     const mockData = {
         userId: 1,
@@ -22,11 +21,11 @@ describe('Should be valid user data',  () => {
         fetchedDataOfTypes = transformToTypes(fetchedData);
     });
 
-    test('Should be valid values', () => {
-        expect(fetchedData).toEqual(mockData)
+    it('Should be valid values', () => {
+        expect(fetchedData).toEqual(mockData);
     });
 
-    test('Should be valid types', () => {
-        expect(fetchedDataOfTypes).toEqual(objectOfTypesData)
+    it('Should be valid types', () => {
+        expect(fetchedDataOfTypes).toEqual(objectOfTypesData);
     });
 });
