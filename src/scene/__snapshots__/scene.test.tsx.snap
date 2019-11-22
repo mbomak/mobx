@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Scene tests Should render Home without errors 1`] = `ShallowWrapper {}`;
+
+exports[`Scene tests Should render Registration without errors 1`] = `ShallowWrapper {}`;
+
+exports[`Scene tests Should render User without errors 1`] = `ShallowWrapper {}`;
